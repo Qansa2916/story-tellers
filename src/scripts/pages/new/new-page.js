@@ -128,14 +128,12 @@ export default class NewPage {
       // }
       const dataImage = this.#takenDocumentations.map((picture, i) => picture.blob);
       const image = [...dataImage];
-      console.log('image', ...dataImage);
       const data = {
         description: this.#form.elements.namedItem('description').value,
         evidenceImages: image[0],
         latitude: this.#form.elements.namedItem('latitude').value,
         longitude: this.#form.elements.namedItem('longitude').value,
       };
-      console.log('dataForm', data);
       await this.#presenter.postNewStory(data);
     });
 

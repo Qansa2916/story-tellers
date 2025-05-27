@@ -57,7 +57,6 @@ export default class HomePage {
     let html = '';
 
     for (const data of stories) {
-      console.log('data', data.location);
       const placeName = await Map.getPlaceNameByCoordinate(data.lat, data.lon);
 
       if (this.#map) {
