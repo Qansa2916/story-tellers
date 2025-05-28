@@ -1,4 +1,6 @@
-export default class HomePresenter {
+import { storyMapper } from '../../data/api-mapper';
+
+export default class BookmarkPresenter {
   #view;
   #model;
 
@@ -12,7 +14,7 @@ export default class HomePresenter {
     try {
       await this.#view.initialMap();
     } catch (error) {
-      console.error('showStoriesListMap: error:', error);
+      console.log('ShowStoriesListMap : error :', error);
     } finally {
       this.#view.hideMapLoading();
     }
@@ -22,18 +24,13 @@ export default class HomePresenter {
     this.#view.showLoading();
     try {
       await this.showStoriesListMap();
-      const response = await this.#model.getAllStories();
-
-      if (!response.ok) {
-        console.error('initialGalleryAndMap: response:', response);
-        this.#view.populateListError(response.message);
-        return;
-      }
-
-      this.#view.populateStoriesList(response.message, response.listStory);
+      const listOfStories = await this.#model.getAllStories();
+      const stories = await Promise.all(listOfStories.map(storyMapper));
+      const message = 'Get list stories successfully.';
+      this.#view.populateBookmarkedStories(message, stories);
     } catch (error) {
       console.error('initialGalleryAndMap: error:', error);
-      this.#view.populateListError(error.message);
+      this.#view.populateBookmarkedStoriesError(error.message);
     } finally {
       this.#view.hideLoading();
     }

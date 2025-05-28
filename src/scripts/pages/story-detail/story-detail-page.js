@@ -10,6 +10,7 @@ import StoryDetailPresenter from './story-detail-presenter';
 import { parseActivePathname } from '../../routes/url-parser';
 import * as StoryAPI from '../../data/api';
 import Map from '../../../utils/map';
+import Database from '../../data/database';
 
 export default class StoryDetailPage {
   #presenter = null;
@@ -46,6 +47,7 @@ export default class StoryDetailPage {
     this.#presenter = new StoryDetailPresenter(parseActivePathname().id, {
       view: this,
       apiModel: StoryAPI,
+      dbModel: Database,
     });
     this.#setupForm();
     this.#presenter.showDetail();
@@ -107,16 +109,32 @@ export default class StoryDetailPage {
     document.getElementById('save-actions-container').innerHTML = generateSaveButtonTemplate();
 
     document.getElementById('story-detail-save').addEventListener('click', async () => {
-      alert('Saved story pages are coming soon!');
+      await this.#presenter.saveStory();
+      await this.#presenter.showSaveButton();
     });
+  }
+
+  saveToBookmarkSuccessfully(message) {
+    alert(message);
+  }
+  saveToBookmarkFailed(message) {
+    alert(message);
   }
 
   renderRemoveButton() {
     document.getElementById('save-actions-container').innerHTML = generateRemoveButtonTemplate();
 
     document.getElementById('story-detail-remove').addEventListener('click', async () => {
-      alert('Saved story pages are coming soon!');
+      await this.#presenter.removeStory();
+      await this.#presenter.showSaveButton();
     });
+  }
+
+  removeFromBookmarkSuccessfully(message) {
+    alert(message);
+  }
+  removeFromBookmarkFailed(message) {
+    alert(message);
   }
 
   addNotifyMeEventListener() {

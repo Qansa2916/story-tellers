@@ -60,9 +60,6 @@ export async function subscribe() {
     alert('Sudah berlangganan push notification.');
     return;
   }
-
-  console.log('Mulai berlangganan push notification...');
-
   const failureSubscribeMessage = 'Langganan push notification gagal diaktifkan.';
   const successSubscribeMessage = 'Langganan push notification berhasil diaktifkan.';
   let pushSubscription;
@@ -79,7 +76,6 @@ export async function subscribe() {
       await pushSubscription.unsubscribe();
       return;
     }
-    console.log('DATA', { endpoint, keys });
     alert(successSubscribeMessage);
   } catch (error) {
     console.error('subscribe: error:', error);

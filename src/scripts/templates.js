@@ -38,8 +38,8 @@ export function generateAuthenticatedNavigationListTemplate() {
 export function generateListEmptyTemplate() {
   return `
     <div id="story-list-empty" class="story-list__empty">
-      <h2>Tidak ada laporan yang tersedia</h2>
-      <p>Saat ini, tidak ada laporan kerusakan fasilitas umum yang dapat ditampilkan.</p>
+      <h2>No stories available</h2>
+      <p>Currently, there are no stories to display.</p>
     </div>
   `;
 }
@@ -201,7 +201,7 @@ export function generateSaveButtonTemplate() {
 export function generateRemoveButtonTemplate() {
   return `
     <button id="story-detail-remove" class="btn btn-transparent">
-      Buang laporan <i class="fas fa-bookmark"></i>
+      Remove Story <i class="fas fa-bookmark"></i>
     </button>
   `;
 }

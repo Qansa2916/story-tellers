@@ -4,11 +4,13 @@ export default class StoryDetailPresenter {
   #storyId;
   #view;
   #apiModel;
+  #dbModel;
 
-  constructor(storyId, { view, apiModel }) {
+  constructor(storyId, { view, apiModel, dbModel }) {
     this.#storyId = storyId;
     this.#view = view;
     this.#apiModel = apiModel;
+    this.#dbModel = dbModel;
   }
 
   async showDetailMap() {
@@ -41,8 +43,29 @@ export default class StoryDetailPresenter {
     }
   }
 
-  showSaveButton() {
-    if (this.#isSaved()) {
+  async saveStory() {
+    try {
+      const story = await this.#apiModel.getStoryById(this.#storyId);
+      await this.#dbModel.putStory(story.story);
+      this.#view.saveToBookmarkSuccessfully('Success saved to boorkmark');
+    } catch (error) {
+      console.error('save story: error', error);
+      this.#view.saveToBookmarkFailed(error.message);
+    }
+  }
+
+  async removeStory() {
+    try {
+      await this.#dbModel.removeStory(this.#storyId);
+      this.#view.removeFromBookmarkSuccessfully('Success to remove from bookmark');
+    } catch (error) {
+      console.error('removeStory: error:', error);
+      this.#view.removeFromBookmarkFailed(error.message);
+    }
+  }
+
+  async showSaveButton() {
+    if (await this.#isSaved()) {
       this.#view.renderRemoveButton();
       return;
     }
@@ -50,7 +73,7 @@ export default class StoryDetailPresenter {
     this.#view.renderSaveButton();
   }
 
-  #isSaved() {
-    return false;
+  async #isSaved() {
+    return !!(await this.#dbModel.getStoryById(this.#storyId));
   }
 }

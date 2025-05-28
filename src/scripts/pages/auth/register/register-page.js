@@ -67,8 +67,6 @@ export default class RegisterPage {
   }
 
   registeredSuccessfully(message) {
-    console.log(message);
-
     // Redirect
     location.hash = '/login';
   }
