@@ -1,0 +1,91 @@
+{
+  "id": "/#/",
+  "start_url": "/#/",
+  "scope": "/",
+  "name": "Story Tellers App",
+  "short_name": "StoryTellers",
+  "description": "This app is for sharing a wonderful stories from everyone and everywhere to others. So let share your story, which make you happy & joyful.",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#084ae4",
+  "icons": [
+    {
+      "src": "images/icons/icon-x144.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "images/icons/maskable-icon-x192.png",
+      "type": "image/png",
+      "sizes": "180x180",
+      "purpose": "maskable"
+    },
+    {
+      "src": "images/icons/maskable-icon-x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "images/screenshots/Screenshot ST-1.png",
+      "sizes": "1014x706",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "images/screenshots/Screenshot ST-2.png",
+      "sizes": "1020x712",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "images/screenshots/Screenshot ST-3.png",
+      "sizes": "633x685",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "images/screenshots/Screenshot ST-4.png",
+      "sizes": "952x669",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "images/screenshots/Screenshot ST-5.png",
+      "sizes": "973x696",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Create",
+      "short_name": "New Story",
+      "description": "Create new story.",
+      "url": "/?source=pwa#/new",
+      "icons": [
+        {
+          "src": "images/icons/add-x512.png",
+          "type": "image/png",
+          "sizes": "512x512"
+        }
+      ]
+    },
+    {
+      "name": "Bookmarked Story",
+      "short_name": "Bookmark",
+      "description": "See bookmarked stories",
+      "url": "/?source=pwa#/bookmark",
+      "icons": [
+        {
+          "src": "images/icons/bookmark-x512.png",
+          "type": "image/png",
+          "sizes": "512x512"
+        }
+      ]
+    }
+  ]
+}
